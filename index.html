@@ -23,6 +23,21 @@
                 <a class="sidebar-brand-name" href="#home">Rani Kumari</a>
             </div>
             <p class="profile-photo-status" id="profile-photo-status" role="status" aria-live="polite"></p>
+            <dialog class="photo-crop-dialog" id="photo-crop-dialog" aria-labelledby="photo-crop-heading" aria-describedby="photo-crop-help">
+                <form class="photo-crop-form" method="dialog">
+                    <h2 id="photo-crop-heading">Crop profile photo</h2>
+                    <p id="photo-crop-help">Drag the image to position it. Use the zoom control or arrow keys to adjust the crop.</p>
+                    <div class="photo-crop-stage" id="photo-crop-stage" role="group" tabindex="0" aria-label="Photo crop area. Use arrow keys to move the image.">
+                        <img class="photo-crop-image" id="photo-crop-image" alt="">
+                    </div>
+                    <label for="photo-crop-zoom">Zoom</label>
+                    <input id="photo-crop-zoom" type="range" min="1" max="3" step="0.05" value="1">
+                    <div class="photo-crop-actions">
+                        <button type="button" id="photo-crop-cancel">Cancel</button>
+                        <button type="button" id="photo-crop-save">Save photo</button>
+                    </div>
+                </form>
+            </dialog>
             <ul>
                 <li><a href="#home" aria-current="page"><i class="fas fa-house" aria-hidden="true"></i><span>Home</span></a></li>
                 <li><a href="#about"><i class="fas fa-user" aria-hidden="true"></i><span>About</span></a></li>
@@ -77,6 +92,7 @@
                             <h3>ConvCup FIFA Bot — IIT (ISM) Dhanbad</h3>
                             <p>Competed in the ConvCup FIFA Bot competition, where our team built an AI soccer agent to play football.</p>
                             <p><a href="assets/certificates/convcup-fifa-bot-4th-place.pdf" target="_blank" rel="noopener noreferrer">View ConvCup PDF</a></p>
+                            <p><a href="https://github.com/ranikumari01936-bit/Pendulum-FIFA-Bot" target="_blank" rel="noopener noreferrer">View FIFA Bot on GitHub</a></p>
                         </article>
                         <article class="experience-card">
                             <h3>Data Analyst Intern</h3>
