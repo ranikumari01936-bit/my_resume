@@ -40,17 +40,154 @@ body {
     align-items: center;
     gap: 10px;
     margin-bottom: 26px;
-    padding: 0 12px;
+    padding: 0 8px;
+}
+
+.sidebar-brand-name {
     color: #fff;
     font-size: 19px;
     font-weight: 700;
     text-decoration: none;
 }
 
-.sidebar-brand i,
 .social-card i,
 .skill-icon {
     color: var(--accent-lavender);
+}
+
+.profile-photo-button {
+    display: inline-flex;
+    flex: 0 0 44px;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    border: 2px solid var(--accent-lavender);
+    border-radius: 50%;
+    background: var(--palette-purple);
+    color: var(--accent-lavender);
+    cursor: pointer;
+}
+
+.profile-photo-button:hover {
+    background: var(--palette-violet);
+}
+
+.profile-photo-button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+.profile-photo-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-photo-button img[hidden] {
+    display: none;
+}
+
+.profile-photo-status {
+    min-height: 0;
+    margin: -18px 8px 18px;
+    color: #f4f1fb;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.photo-crop-dialog {
+    width: min(420px, calc(100vw - 32px));
+    max-width: none;
+    max-height: calc(100vh - 32px);
+    margin: auto;
+    padding: 24px;
+    overflow: auto;
+    border: 1px solid rgb(211 183 240 / 45%);
+    border-radius: 16px;
+    background: var(--page-background);
+    color: #fff;
+}
+
+.photo-crop-dialog::backdrop {
+    background: rgb(0 0 0 / 72%);
+}
+
+.photo-crop-form {
+    display: grid;
+    gap: 14px;
+}
+
+.photo-crop-form h2 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+}
+
+.photo-crop-form p {
+    color: #e3def2;
+    font-size: 14px;
+}
+
+.photo-crop-stage {
+    position: relative;
+    width: min(100%, 280px);
+    aspect-ratio: 1;
+    justify-self: center;
+    overflow: hidden;
+    border: 2px solid var(--accent-lavender);
+    border-radius: 50%;
+    background: #17152c;
+    cursor: grab;
+    touch-action: none;
+}
+
+.photo-crop-stage:active {
+    cursor: grabbing;
+}
+
+.photo-crop-stage:focus-visible,
+.photo-crop-form input:focus-visible,
+.photo-crop-actions button:focus-visible {
+    outline: 3px solid var(--accent-lavender);
+    outline-offset: 3px;
+}
+
+.photo-crop-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: none;
+    max-height: none;
+    user-select: none;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.photo-crop-form input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-lavender);
+}
+
+.photo-crop-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.photo-crop-actions button {
+    min-height: 42px;
+    padding: 8px 16px;
+    border: 1px solid var(--accent-lavender);
+    border-radius: 8px;
+    background: var(--palette-purple);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+}
+
+.photo-crop-actions button:hover {
+    background: var(--palette-violet);
 }
 
 .sidebar ul {
@@ -205,6 +342,30 @@ section p {
     transform: translateY(-10px);
 }
 
+.project a {
+    color: var(--accent-lavender);
+}
+
+.project-image-link {
+    display: block;
+    width: calc(100% + 60px);
+    margin: -30px -30px 18px;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.project-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.project-image-link:hover .project-image {
+    transform: scale(1.04);
+}
+
 .experience-card {
     text-align: left;
 }
@@ -320,6 +481,11 @@ section p {
     margin: 0 auto;
 }
 
+.contact label {
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
 .contact input,
 .contact textarea {
     margin-bottom: 20px;
@@ -329,6 +495,14 @@ section p {
     background: var(--field-background);
     color: #fff;
     font: inherit;
+}
+
+.contact input:focus-visible,
+.contact textarea:focus-visible,
+.contact button:focus-visible,
+.contact-direct a:focus-visible {
+    outline: 3px solid var(--accent-lavender);
+    outline-offset: 3px;
 }
 
 .contact button {
@@ -341,106 +515,18 @@ section p {
     font-size: 1.1em;
 }
 
-.preview-controls {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 1100;
-    display: flex;
-    gap: 4px;
-    padding: 4px;
-    border: 1px solid rgb(211 183 240 / 30%);
-    border-radius: 10px;
-    background: var(--field-background);
+#contact-status {
+    min-height: 1.65em;
+    margin-top: 12px;
 }
 
-.preview-controls button {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    min-height: 38px;
-    padding: 0 12px;
-    border: 0;
-    border-radius: 7px;
-    background: transparent;
-    color: #e3def2;
-    cursor: pointer;
-    font: inherit;
-    font-size: 14px;
+.contact-direct {
+    margin: 20px auto 0;
+    text-align: center;
 }
 
-.preview-controls button[aria-pressed="true"] {
-    background: var(--palette-purple);
-    color: #fff;
-}
-
-.preview-controls button:focus-visible {
-    outline: 2px solid var(--accent-lavender);
-    outline-offset: 2px;
-}
-
-.site-preview.is-mobile {
-    position: relative;
-    width: min(390px, 100%);
-    margin: 76px auto 32px;
-    overflow: clip;
-    border: 1px solid rgb(211 183 240 / 35%);
-    border-radius: 18px;
-    box-shadow: 0 16px 48px rgb(0 0 0 / 35%);
-    transform: translateZ(0);
-}
-
-.site-preview.is-mobile .sidebar {
-    position: fixed;
-    left: -250px;
-    height: 100vh;
-    transition: left 0.3s;
-}
-
-.site-preview.is-mobile .sidebar.active {
-    left: 0;
-}
-
-.site-preview.is-mobile .toggle-btn {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-    z-index: 1001;
-    display: block;
-    width: 42px;
-    height: 42px;
-    border: 0;
-    border-radius: 9px;
-    background: var(--palette-purple);
-    color: #fff;
-    cursor: pointer;
-}
-
-.site-preview.is-mobile .main {
-    margin-left: 0;
-}
-
-.site-preview.is-mobile section {
-    padding: 56px 0;
-}
-
-.site-preview.is-mobile .hero {
-    height: auto;
-    min-height: 100vh;
-    padding: 80px 8px;
-}
-
-.site-preview.is-mobile .hero h1 {
-    font-size: clamp(2.25rem, 9vw, 2.75rem);
-}
-
-.site-preview.is-mobile .hero p {
-    font-size: 1.1rem;
-}
-
-.site-preview.is-mobile .social-cards,
-.site-preview.is-mobile .education-grid {
-    grid-template-columns: 1fr;
+.contact-direct a {
+    color: var(--accent-lavender);
 }
 
 @media (max-width: 768px) {
